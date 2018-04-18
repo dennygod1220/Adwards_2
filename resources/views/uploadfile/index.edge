@@ -1,0 +1,37 @@
+ @layout('layout/main') 
+ @section('content')
+
+
+<form method="POST" action="upload" enctype="multipart/form-data">
+  <div class="form-group">
+    <label>請選擇要上傳的檔案</label>
+    <input class="form-control-file" type="file" name="profile_pic" />
+  </div>
+  <div class="form-group">
+    <button class="btn btn-outline-primary btn-lg" type="submit"> 上傳 </button>
+  </div>
+</form>
+
+<hr>
+
+<table class="table table-bordered table-hover " style="text-align:center;">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">發票號碼</th>
+      <th scope="col">來自檔案</th>
+    </tr>
+  </thead>
+  <tbody>
+    @each(ADB_data_all in AllData)
+    <tr>
+      <td>{{ADB_data_all.id}}</td>
+      <td>{{ADB_data_all.invoice_num}}</td>
+      <td>{{ADB_data_all.file_name}}</td>
+    </tr>
+    @endeach
+  </tbody>
+</table>
+
+@endsection
+

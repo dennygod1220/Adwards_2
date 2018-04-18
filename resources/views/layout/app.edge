@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" style="display: none;">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>
+    @section('title')
+      Todos App with adonis
+    @endsection
+  </title>
+  {{ css('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css') }}
+  {{ css('https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/black/pace-theme-flash.min.css') }}
+  {{ css('style.css') }}
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">BahdTodos</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <ul class="navbar-nav ml-auto">
+
+        @loggedIn
+
+        <li class="nav-item"> 
+            <a href="/logout" class="nav-link">Logout</a>
+        </li>
+
+        @else
+
+
+        <li class="nav-item active">
+          <a class="nav-link" href="/auth/signin">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/auth/signup">Sign Up</a>
+        </li>
+
+        @endloggedIn
+      </ul>
+    </div>
+  </nav>
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        @!section('content')
+      </div>
+    </div>
+  </div>
+  <!-- Pace js for some fancy loading. -->
+  {{ script('https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js') }}
+  <!-- HTML tag has a display: none style (gives it a display of none, so as not to preview raw html before bootstrap is loaded.) -->
+  <!-- When content is loaded, remove that display: none style. -->
+
+    {{ script('https://code.jquery.com/jquery-3.2.1.slim.min.js') }} 
+  {{ script('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js')}}
+  {{ script('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js') }}
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.getElementsByTagName('html')[0].style = '';
+    });
+  </script>
+</body>
+</html>
