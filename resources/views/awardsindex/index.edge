@@ -1,38 +1,68 @@
+ @layout('layout/normalUser/main') 
+ @section('content')
 
-@layout('layout/normalUser/main')
+<style>
+  .btn{
+    color: black;
+    font-size: 25px;
+    font-weight: bold;
+  }
+</style>
 
-@section('content')
-
-{{--  沒中獎提醒  --}}
-@if(old('NoWinMessage'))
-    <div class="alert alert-danger">
-        {{ old('NoWinMessage') }}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-2">
+      <a class="btn btn-secondary btn-lg">預約試穿</a>
     </div>
-@endif
-{{--  中獎提醒  --}}
-@if(old('WinMessage'))
-    <div class="alert alert-info">
-        {{ old('WinMessage') }}
+    <div class="col-sm-2">
+      <a class="btn btn-secondary btn-lg">內衣密碼</a>
     </div>
-@endif
-
-    <div class="card">
-  <div class="card-body">
-
-    <form action="{{ route('AwardsIndexController.check')}}" method="POST">
-   {{ csrfField() }}
-      <div class="form-group">
-        <label for="exampleInputEmail1">請輸入您的Email:</label>
-        <input type="email" name="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
-        {{--  <small class="form-text text-danger">請填入Email</small>  --}}
-      </div>
-      <div class="form-group">
-        <label>您的發票號碼:</label>
-        <input type="text" name="invoicenum" class="form-control" placeholder="發票號碼">
-      </div>
-      <button type="submit" class="btn form-control btn-info">送出兌獎</button>
-    </form>
+    <div class="col-sm-2">
+      <a class="btn btn-secondary btn-lg">Audrey粉絲團</a>
+    </div>
+    <div class="col-sm-2">
+      <a class="btn btn-secondary btn-lg">AudreyIG</a>
+    </div>
+    <div class="col-sm-2">
+      <a class="btn btn-secondary btn-lg">EC線上購物</a>
+    </div>
+    <div class="col-sm-1"></div>
+  </div>
+  <div class="row" style="height:50px"></div>
+  <div class="row">
+    <div class="col-sm-1">
+    </div>
+    <div class="col-sm">
+      <img src="./img/index.png" class="img-fluid" alt="">
+    </div>
+    <div class="col-sm-1">
+    </div>
+  </div>
+  <div class="row" style="height:50px"></div>
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-2">
+      <a class="btn btn-secondary btn-lg">新品介紹</a>
+    </div>
+    <div class="col-sm-2">
+      <a class="btn btn-secondary btn-lg">影片欣賞</a>
+    </div>
+    <div class="col-sm-2">
+      <a class="btn btn-secondary btn-lg">門市活動</a>
+    </div>
+    <div class="col-sm-2">
+      <a class="btn btn-secondary btn-lg">Audrey官網</a>
+    </div>
+    <div class="col-sm-2"></div>
+  </div>
+  <div class="row" style="height:50px">
+    <div class="col">
+      <a href="/reservationnow">立即預約</a>
+    </div>
   </div>
 </div>
+
+
 
 @endsection

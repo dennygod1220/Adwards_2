@@ -5,7 +5,9 @@ const Helpers = use('Helpers')
 
 
 Route.on('/').render('awardsindex.index')
-Route.post('/','AwardsIndexController.check')
+
+Route.on('/reservationnow').render('awardsindex.reservationnow')
+Route.post('/reservationnow','AwardsIndexController.check')
 
 Route.get('/uploadfile','UploadFileController.index').middleware('auth')
 
