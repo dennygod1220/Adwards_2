@@ -3,11 +3,16 @@
 const Route = use('Route')
 const Helpers = use('Helpers')
 
-
+//首頁
 Route.on('/').render('awardsindex.index')
 
+//驗證發票頁
 Route.on('/reservationnow').render('awardsindex.reservationnow')
 Route.post('/reservationnow','AwardsIndexController.check')
+
+//發票過了
+Route.get('/invoiceok','AwardsIndexController.invoiceok').middleware('auth')
+
 
 Route.get('/uploadfile','UploadFileController.index').middleware('auth')
 
@@ -32,3 +37,4 @@ Route.group(()=>{
     Route.post('/signin','UserController.signIn').validator('SignIn')
 }).prefix('/auth')
 
+Route.on('/errorpage').render('error.404')

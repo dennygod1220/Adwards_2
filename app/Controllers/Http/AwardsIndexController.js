@@ -12,23 +12,47 @@ class AwardsIndexController {
         const data = await Awards.all();
         const data2 = data.toJSON();
         
-        const {email,invoicenum} = request.all();
+        const {email,invoice_num} = request.all();
 
         //將使用者輸入的發票號碼和DB內中獎號碼比對，如果沒中獎回傳直=0
         const winning = await Awards
             .query()
-            .where('invoice_num', invoicenum)
+            .where('invoice_num', invoice_num)
             .getCount()        
 
         if( winning == 0){
             console.log("fail")
             session.flash({ NoWinMessage:'沒中' })
+            return response.redirect('back');
         }
         else{
             console.log("win")
             session.flash({ WinMessage:'恭喜' })
+
+            try{
+                const email = 'test@gmail.com'
+                const password = 'test'
+                await auth.attempt(email,password);                
+                // return response.redirect('/uploadfile')
+                //將這個測試使用者放入session
+                // session.put('username','testuser')
+                return response.route('/invoiceok') 
+            }
+            catch(error){
+                console.log(error)    
+                return response.redirect('back');
+            }
         }
-        return response.redirect('back');
+
+        
+
+
+
+
+    }
+
+    async invoiceok(){
+        return "sucess page"
     }
 }
 

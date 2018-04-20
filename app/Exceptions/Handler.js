@@ -22,7 +22,8 @@ class ExceptionHandler extends BaseExceptionHandler {
    */
   async handle (error, { request, response }) {
     //當路徑有錯時，處理方法
-    response.status(error.status).send(error.message+"hello")
+    response.status(error.status).send(error.message)
+    // response.route('/errorpage')   
   }
 
   /**
