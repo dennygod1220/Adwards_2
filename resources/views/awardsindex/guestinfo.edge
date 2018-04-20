@@ -1,0 +1,62 @@
+ @layout('layout/normalUser/main') 
+@section('content')
+<div class="form-group">
+  <label>您的發票號碼:</label>
+  <input type="text" name="invoice_num" class="form-control" readonly="readonly"  placeholder="發票號碼" value="{{invoicenum}}" >
+  {{--  <button type="submit" class="btn form-control btn-info">送出兌獎</button>  --}}
+</div>
+<div class="card">
+    <div class="card-body">
+
+        <form action="{{ route('UserController.store')}}" method="POST">
+
+            {{ csrfField() }}
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col" style="border-right: 1px #dfdfdf solid;">
+                        <div class="form-group">
+                            <label for="store">您選擇的店櫃:</label>
+                            <input type="text" class="form-control" name="store_id" value="{{old('store_id','')}}" aria-describedby="store_idHelp">
+                        </div>
+                        <div class="form-group">
+                            <label for="date">您選擇的日期:</label>
+                            <input type="date" name="date" value="{{old('date','')}}" class="form-control" aria-describedby="dateHelp">
+                        </div>
+                        <div class="form-group">
+                            <label for="time">您預約的時段:</label>
+                            <input type="text" name="time" value="{{old('time','')}}" class="form-control" aria-describedby="timeHelp">
+                        </div>
+                    </div>
+
+                    
+                    <div class="col">
+                        <div class="form-group">
+                            <label>您的芳名:</label>
+                            <input type="text" name="guest_name" class="form-control"  placeholder="請輸入您的芳名">
+                        </div>
+                        <div class="form-group">
+                            <label>行動電話:</label>
+                            <input type="text" name="cell_phone" class="form-control"  placeholder="請輸入您的行動電話號碼" aria-describedby="phoneHelp">
+                        </div>
+                        <div class="form-group">
+                            <label>您的生日:</label>
+                            <input type="date" name="birthday" class="form-control" aria-describedby="dateHelp">
+                        </div>
+                        <div class="form-group">
+                            <label>特殊需求:</label>
+                            <input type="text" name="special_need" class="form-control" >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <button type="submit" class="btn form-control btn-info">建立帳號</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+@endsection

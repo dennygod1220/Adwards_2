@@ -20,11 +20,6 @@
     <form action="{{ route('AwardsIndexController.check')}}" method="POST">
    {{ csrfField() }}
       <div class="form-group">
-        <label for="exampleInputEmail1">請輸入您的Email:</label>
-        <input type="email" name="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
-        {{--  <small class="form-text text-danger">請填入Email</small>  --}}
-      </div>
-      <div class="form-group">
         <label>您的發票號碼:</label>
         <input type="text" name="invoice_num" class="form-control" placeholder="發票號碼">
       </div>
