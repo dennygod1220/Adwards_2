@@ -8,7 +8,7 @@ class GuestinfoSchema extends Schema {
       table.increments()
       table.integer('store_id').notNullable()
       table.date('date').notNullable()
-      table.string('time',50).notNullable()
+      table.integer('time').notNullable()
       table.string('guest_name').notNullable()
       table.string('cell_phone').notNullable()
       table.date('birthday').notNullable()

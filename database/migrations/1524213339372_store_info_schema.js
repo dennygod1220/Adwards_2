@@ -6,7 +6,10 @@ class StoreInfoSchema extends Schema {
   up () {
     this.create('store_infos', (table) => {
       table.increments()
-      table.string('stor_name')
+      table.string('store_area')
+      table.string('store_name')
+      table.string('sotre_address')
+      table.string('store_phone')
       table.timestamps()
     })
   }

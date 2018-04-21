@@ -16,7 +16,7 @@ class UploadFileController {
     const AllData = await AdonisInvoice.all()
 
     //session.get() 取得session除存的資訊
-    return view.render('UploadFile/index',{
+    return view.render('uploadfile/index',{
       AllData:AllData.toJSON(),
       SessionUser:session.get('username')+"你好"
     })

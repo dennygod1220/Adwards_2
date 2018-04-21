@@ -1,6 +1,6 @@
 'use strict'
 
-const Awards = use('App/Models/Adonisinvoice')
+const Awards = use('App/Models/AdonisInvoice')
 
 class Checkinvoice {
   async handle ({ request,session,response }, next) {

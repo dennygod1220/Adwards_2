@@ -29,6 +29,7 @@
     "@adonisjs/validator": "^5.0.3",
     "adonis-spreadsheet": "^1.0.1",
     "dateformat": "^3.0.3",
+    "fullcalendar": "^3.9.0",
     "mysql": "^2.15.0",
     "node-xlsx": "^0.12.0"
   },
