@@ -1,24 +1,19 @@
- @layout('layout/normalUser/main')
-  @section('content')
+ @layout('layout/normalUser/main') 
+@section('content')
 
-<div class="col-sm">
-  <img src="./img/index.png" class="img-fluid" alt="">
-</div>
-<a href="/reservationnow">
-  <div id="reservationBtn2">
-    <div id="reservationBtn" style="background-color:#41a8e2;">
-      <p id="reservationnowP"> 立即預約</p>
+{{--  沒中獎提醒  --}}
+@if(old('NoWinMessage'))
+    <div class="alert alert-danger">
+        {{ old('NoWinMessage') }}
     </div>
-  </div>
-</a>
-<div class="row" style="height:50px">
-</div>
+@endif
+{{--  中獎提醒  --}}
+@if(old('WinMessage'))
+    <div class="alert alert-info">
+        {{ old('WinMessage') }}
+    </div>
+@endif
 
-{{--  ====================================================================================  --}}
-
-
-
- 
 <style>
     {{--  隱藏的form input  --}}
     .Invisible {
@@ -33,27 +28,23 @@
     }
 </style>
 
-
 <div class="card">
-  <div class="card-body" id="formbody">
-
-    @if(old('NoWinMessage'))
-      <div class="alert alert-danger">
-        {{ old('NoWinMessage') }}
-      </div>
-    @endif  
+  <div class="card-body">
 
     <form action="{{ route('AwardsIndexController.check')}}" method="POST">
-      {{ csrfField() }}
+   {{ csrfField() }}
       <div class="form-group">
         <label>您的發票號碼:</label>
         <input type="text" name="invoice_num" class="form-control" placeholder="發票號碼">
       </div>
       <button type="submit" class="btn form-control btn-info">送出發票</button>
     </form>
+  </div>
 
-{{--  =========================================  --}}
-    <form action="{{ route('UserController.store')}}" method="POST">
+
+
+  <form action="{{ route('UserController.store')}}" method="POST">
+
       {{ csrfField() }}
       <div class="container-fluid">
         <div class="row">
@@ -61,30 +52,30 @@
             <div class="form-group">
               <label for="store">
                 <span class="isneedicon">*</span>您選擇的店櫃:</label>
-              <select name="store_area" id="store_area" class="form-control"></select>
-              <select name="store_id" id="store_id" class="form-control"></select>
+              <select name="store_area" id="store_area" class="form-control" readonly="readonly"></select>
+              <select name="store_id" id="store_id" class="form-control" readonly="readonly"></select>
 
-              <input type="text" name="store_area" class="form-control Invisible">
-              <input type="text" class="form-control Invisible" name="store_id" value="{{old('store_id','')}}" aria-describedby="store_idHelp">
+              <input type="text" name="store_area" class="form-control Invisible" readonly="readonly">
+              <input type="text" class="form-control Invisible" name="store_id" value="{{old('store_id','')}}" aria-describedby="store_idHelp" readonly="readonly">
             </div>
             <div class="form-group">
               <label for="date">
                 <span class="isneedicon">*</span>您選擇的日期:</label>
               <div>{{-- 透過月曆元件產生，js在layout/normalUser/forguestinfo中 --}}</div>
               <div class="input-group datepicker date" id='date1'>
-                <input name="date" type="hidden" class="form-control">
+                <input name="date" type="hidden" class="form-control" readonly="readonly">
               </div>
             </div>
 
             <div class="form-group" id="whattime">
               <label for="time">
                 <span class="isneedicon">*</span>您預約的時段:</label>
-              <select id="select_time" class="form-control">
-                <option v-for="time in time">
-                  [[time]]
+              <select id="select_time" class="form-control" readonly="readonly">
+                <option>
+
                 </option>
               </select>
-              <input id="inputTime" type="text" name="time" class="form-control Invisible" aria-describedby="timeHelp">
+              <input id="inputTime" type="text" name="time" class="form-control Invisible" aria-describedby="timeHelp" readonly="readonly">
             </div>
           </div>
 
@@ -93,12 +84,12 @@
             <div class="form-group">
               <label>
                 <span class="isneedicon">*</span>您的芳名:</label>
-              <input type="text" name="guest_name" class="form-control" placeholder="請輸入您的芳名">
+              <input type="text" name="guest_name" class="form-control" placeholder="請輸入您的芳名" readonly="readonly">
             </div>
             <div class="form-group">
               <label>
                 <span class="isneedicon">*</span>行動電話:</label>
-              <input type="text" name="cell_phone" class="form-control" placeholder="請輸入您的行動電話號碼" aria-describedby="phoneHelp">
+              <input type="text" name="cell_phone" class="form-control" placeholder="請輸入您的行動電話號碼" aria-describedby="phoneHelp" readonly="readonly">
             </div>
 
             <div class="form-group" id="birdaybody">
@@ -106,26 +97,26 @@
               {{-- 生日 年 --}}
 
               <span class="form-inline">
-              年:
-                <select id="#birth_Y" class="form-control" v-model="birthday_Y2">
+                年:
+                <select id="#birth_Y" class="form-control" v-model="birthday_Y2" readonly="readonly">
                   <option v-for="birthday_Y in birthday_Y">
-                    [[birthday_Y]]
+                    1990
                   </option>
                 </select>
                 月:
-                <select id="#birth_M" class="form-control" v-model="birthday_M2">
+                <select id="#birth_M" class="form-control" v-model="birthday_M2" readonly="readonly">
                   <option v-for="birthday_M in birthday_M">
-                    [[birthday_M]]
+                   1
                   </option>
                 </select>
                 日:
-                <select id="#birth_D" class="form-control\" v-model="birthday_D2">
+                <select id="#birth_D" class="form-control\" v-model="birthday_D2" readonly="readonly">
                   <option v-for="birthday_D in birthday_D">
-                    [[birthday_D]]
+                    11
                   </option>
                 </select>
                 <div style="display:none;">
-                <input type="text" name="birthday" class="form-control Invisible" v-model="combination_birthday">
+                <input type="text" name="birthday" class="form-control Invisible" v-model="combination_birthday" readonly="readonly">
                 <div class="Invisible"> [[combination_birthday]] </div>
                 </div>
             </span>
@@ -134,34 +125,23 @@
             <div class="form-group">
               <label>
                 <span class="isneedicon">*</span>E-mail:</label>
-              <input type="email" name="email" class="form-control" aria-describedby="emailHelp">
+              <input type="email" name="email" class="form-control" aria-describedby="emailHelp" readonly="readonly">
             </div>
             <div class="form-group">
               <label>特殊需求:</label>
               {{--  <input type="text" name="special_need" class="form-control">  --}}
-              <textarea name="special_need" cols="30" rows="8" class="form-control">
+              <textarea name="special_need" cols="30" rows="8" class="form-control" readonly="readonly">
               </textarea>
             </div>
           </div>
         </div>
 
         <div class="row">
-          <button type="submit" class="btn form-control btn-info">立即預約</button>
+          <button type="submit" class="btn form-control btn-info" readonly="readonly">送出</button>
         </div>
       </div>
 
     </form>
-  </div>
 </div>
 
-
-{{ script('https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js')}}
-{{ script('https://cdn.jsdelivr.net/npm/vue/dist/vue.js')}}
-{{ script('./js/guestinfo.js') }}
-
-
-
-
-
 @endsection
-

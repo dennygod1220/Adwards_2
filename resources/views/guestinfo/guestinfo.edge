@@ -20,7 +20,7 @@
 <div class="form-group">
   <label>您的發票號碼:</label>
   <input type="text" name="invoice_num" class="form-control" readonly="readonly" placeholder="發票號碼" value="{{invoicenum}}"> 
-  {{--<button type="submit" class="btn form-control btn-info">送出兌獎</button> --}}
+  <button type="submit" class="btn form-control btn-info" readonly="readonly">送出發票</button>
 </div>
 <div class="card">
   <div class="card-body" id="formbody">
@@ -79,18 +79,19 @@
               {{-- 生日 年 --}}
 
               <span class="form-inline">
+              年:
                 <select id="#birth_Y" class="form-control" v-model="birthday_Y2">
                   <option v-for="birthday_Y in birthday_Y">
                     [[birthday_Y]]
                   </option>
                 </select>
-
+                月:
                 <select id="#birth_M" class="form-control" v-model="birthday_M2">
                   <option v-for="birthday_M in birthday_M">
                     [[birthday_M]]
                   </option>
                 </select>
-
+                日:
                 <select id="#birth_D" class="form-control\" v-model="birthday_D2">
                   <option v-for="birthday_D in birthday_D">
                     [[birthday_D]]

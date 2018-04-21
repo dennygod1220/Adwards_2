@@ -1,0 +1,53 @@
+  .btn {
+    color: black;
+    font-size: 25px;
+    font-weight: bold;
+  }
+
+  #reservationBtn {
+    /* top: 570px; */
+    position: absolute;
+    /* margin-left: 1116px; */
+    margin-top: 7px;
+    margin-left: 8px;
+    /* background-color: #41a8e2; */
+    width: 70px;
+    height: 70px;
+    border-radius: 40px;
+    z-index: 5;
+  }
+
+  #reservationBtn2 {
+    top: 564px;
+    position: absolute;
+    margin-left: 1116px;
+    background-color: #41a8e2;
+    width: 85px;
+    height: 85px;
+    border-radius: 43px;
+    z-index: 0;
+    background-color:#d9effd;
+  }
+
+  #reservationnowP {
+    position: absolute;
+    margin-top: 5px;
+    color: white;
+    margin-left: 15px;
+    font-size: 20px;
+    font-weight: 700;
+    z-index: 5
+  }
+  /* ================================================ */
+/* 隱藏的form input */
+  .Invisible {
+    display: none;
+  }
+  /* 月曆寬度 */
+  /* .list-unstyled{
+      width:400px;
+  } */
+/* 紅色的星號 */
+  .isneedicon{
+      color:red;
+  }

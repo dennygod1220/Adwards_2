@@ -13,8 +13,10 @@ class Checkinvoice {
     .getCount()    
 
     if(winning == 0){
+      session.clear();
       session.flash({ NoWinMessage:'此發票號碼不符合資格' })
-      return response.redirect('back');
+      // return response.redirect('back');
+      return response.redirect('/#formbody')
     }
     else{
       await next()

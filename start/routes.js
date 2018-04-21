@@ -6,9 +6,9 @@ const Helpers = use('Helpers')
 //首頁
 Route.on('/').render('awardsindex.index')
 
-//輸入發票號碼頁面
-Route.on('/reservationnow').render('awardsindex.reservationnow')
-Route.post('/reservationnow','AwardsIndexController.check')
+//20180421_因不須跳到別的頁面輸入發票號碼，因此直接從'/'發送post請求到invoiceok頁面
+// Route.on('/reservationnow').render('awardsindex.reservationnow')
+Route.post('/','AwardsIndexController.check')
 
 //填個人資料，發票符合資格才能到達此頁
 Route.get('/invoiceok','GuestinfoController.invoiceok').middleware(['Checkinvoice'])
