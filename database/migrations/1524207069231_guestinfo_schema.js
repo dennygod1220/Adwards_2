@@ -6,14 +6,17 @@ class GuestinfoSchema extends Schema {
   up () {
     this.create('guestinfos', (table) => {
       table.increments()
-      table.integer('store_id').notNullable()
-      table.date('date').notNullable()
-      table.integer('time').notNullable()
-      table.string('guest_name').notNullable()
-      table.string('cell_phone').notNullable()
-      table.date('birthday').notNullable()
-      table.string('email',190).notNullable()
-      table.text('special_need')
+      table.integer('store_id',10).notNullable().comment('對應的店鋪ID')
+      table.foreign('store_id')
+      table.date('date').notNullable().comment('預約日期')
+      table.integer('time').notNullable().comment('預約時間')
+      table.string('guest_name').notNullable().comment('客戶姓名')
+      table.string('cell_phone').notNullable().comment('客戶手機')
+      table.date('birthday').notNullable().comment('客戶生日')
+      table.string('email',190).notNullable().comment('客戶Email')
+      table.text('special_need').comment('客戶的特殊癖好')
+      table.string('guest_invoice').notNullable().comment('這個人的發票號碼')
+      table.string('guest_size').notNullable().comment('尺寸大小')
       table.timestamps()
     })
   }
@@ -24,3 +27,4 @@ class GuestinfoSchema extends Schema {
 }
 
 module.exports = GuestinfoSchema
+ 

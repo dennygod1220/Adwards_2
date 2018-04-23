@@ -1,0 +1,138 @@
+ @layout('layout/normalUser/forguestinfo') 
+@section('content')
+ 
+<style>
+    {{--  隱藏的form input  --}}
+    .Invisible {
+      display: none;
+    }
+    .list-unstyled{
+        width:400px;
+    }
+    {{--  紅色的星號  --}}
+    .isneedicon{
+        color:red;
+    }
+</style>
+
+
+<div class="form-group">
+  <label>您的發票號碼:</label>
+  <input type="text" name="invoice_num" class="form-control" readonly="readonly" placeholder="發票號碼" value="{{invoicenum}}"> 
+  <button type="submit" class="btn form-control btn-info" readonly="readonly">送出發票</button>
+</div>
+<div class="card">
+  <div class="card-body" id="formbody">
+
+    <form action="{{ route('GuestinfoController.store')}}" method="POST">
+
+      {{ csrfField() }}
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col" style="border-right: 1px #dfdfdf solid;">
+            <div class="form-group">
+              <label for="store">
+                <span class="isneedicon">*</span>您選擇的店櫃:</label>
+              <select name="store_area" id="store_area" class="form-control"></select>
+              <select name="store_id" id="store_id" class="form-control"></select>
+
+              <input type="text" name="store_area" class="form-control Invisible">
+              <input type="text" class="form-control Invisible" name="store_id" value="{{old('store_id','')}}" aria-describedby="store_idHelp">
+            </div>
+            <div class="form-group">
+              <label for="date">
+                <span class="isneedicon">*</span>您選擇的日期:</label>
+              <div>{{-- 透過月曆元件產生，js在layout/normalUser/forguestinfo中 --}}</div>
+              <div class="input-group datepicker date" id='date1'>
+                <input name="date" type="hidden" class="form-control">
+              </div>
+            </div>
+
+            <div class="form-group" id="whattime">
+              <label for="time">
+                <span class="isneedicon">*</span>您預約的時段:</label>
+              <select id="select_time" class="form-control">
+                <option v-for="time in time">
+                  [[time]]
+                </option>
+              </select>
+              <input id="inputTime" type="text" name="time" class="form-control Invisible" aria-describedby="timeHelp">
+            </div>
+          </div>
+ 
+
+          <div class="col">
+            <div class="form-group">
+              <label>
+                <span class="isneedicon">*</span>您的芳名:</label>
+              <input type="text" name="guest_name" class="form-control" placeholder="請輸入您的芳名">
+            </div>
+            <div class="form-group">
+              <label>
+                <span class="isneedicon">*</span>行動電話:</label>
+              <input type="text" name="cell_phone" class="form-control" placeholder="請輸入您的行動電話號碼" aria-describedby="phoneHelp">
+            </div>
+
+            <div class="form-group" id="birdaybody">
+              <label><span class="isneedicon">*</span>出生日期:</label>
+              {{-- 生日 年 --}}
+
+              <span class="form-inline">
+              年:
+                <select id="#birth_Y" class="form-control" v-model="birthday_Y2">
+                  <option v-for="birthday_Y in birthday_Y">
+                    [[birthday_Y]]
+                  </option>
+                </select>
+                月:
+                <select id="#birth_M" class="form-control" v-model="birthday_M2">
+                  <option v-for="birthday_M in birthday_M">
+                    [[birthday_M]]
+                  </option>
+                </select>
+                日:
+                <select id="#birth_D" class="form-control\" v-model="birthday_D2">
+                  <option v-for="birthday_D in birthday_D">
+                    [[birthday_D]]
+                  </option>
+                </select>
+                <div style="display:none;">
+                <input type="text" name="birthday" class="form-control Invisible" v-model="combination_birthday">
+                <div class="Invisible"> [[combination_birthday]] </div>
+                </div>
+            </span>
+            </div>
+           
+            <div class="form-group">
+              <label>
+                <span class="isneedicon">*</span>E-mail:</label>
+              <input type="email" name="email" class="form-control" aria-describedby="emailHelp">
+            </div>
+            <div class="form-group">
+              <label>特殊需求:</label>
+              {{--  <input type="text" name="special_need" class="form-control">  --}}
+              <textarea name="special_need" cols="30" rows="8" class="form-control">
+              </textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <button type="submit" class="btn form-control btn-info">建立帳號</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+
+{{ script('https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js')}}
+{{ script('https://cdn.jsdelivr.net/npm/vue/dist/vue.js')}}
+{{ script('./js/guestinfo.js') }}
+
+<script>
+
+
+</script>
+@endsection

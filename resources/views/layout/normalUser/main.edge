@@ -14,6 +14,42 @@
 
   <div class="container-fluid">
     @!section('content')
+
+    <div style="height:50px"></div>
+
+    <div class="row">
+      <div class="col-sm-5"></div>
+      <div class="col-sm-2" id="trackingaudrey">追蹤AUDREY奧黛莉</div>
+      <div class="col-sm-5"></div>      
+    </div>
+     <div style="height:50px"></div>
+
+    <div class="row">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4" id="threeicon">
+        <div class="row" id="imgRow">
+          <div class="col">
+          <a href="https://zh-tw.facebook.com/twaudrey/" target="_blank">
+            <img class="img-fluid imcicon" src="./img/fbicon.png" alt="">
+          </a>
+          </div>
+          <div class="col">
+          <a href="https://www.instagram.com/audrey_lingerie_tw/" target="_blank">
+            <img class="img-fluid imcicon" src="./img/igicon.png" alt="">
+          </a>
+          </div>
+          <div class="col">
+          <a href="https://projects.invisionapp.com/redirect?url=https%3A%2F%2Fwww.youtube.com%2Fuser%2Fautw100">
+            <img class="img-fluid imcicon" src="./img/youtubeicon.png" alt="">
+          </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4"></div>      
+    </div>
+    </div>
+    
+  @include('layout/normalUser/footer')
   </div>
 
   {{ script('https://cdn.jsdelivr.net/npm/vue/dist/vue.js')}}

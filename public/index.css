@@ -51,3 +51,24 @@
   .isneedicon{
       color:red;
   }
+
+/* ==========================底部========================= */
+#trackingaudrey{
+  text-align:center;
+  font-size: 16px;
+  font-weight: bolder;
+}
+#threeicon{
+  text-align:center;
+}
+#imgRow{
+  max-height:70px;
+}
+.imcicon{
+  width:70px;
+  height:70px;
+}
+#footer{
+  height:50px;
+  background-colo:rgb(65, 168, 226);
+}

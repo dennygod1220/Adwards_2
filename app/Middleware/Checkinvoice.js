@@ -2,10 +2,11 @@
 
 const Awards = use('App/Models/AdonisInvoice')
 
+
 class Checkinvoice {
   async handle ({ request,session,response }, next) {
     // call next to advance the request
-    console.log(session.get('invoicenum'))
+    // console.log(session.get('invoicenum'))
     const invoicenum = session.get('invoicenum')
     const winning = await Awards
     .query()
@@ -18,7 +19,7 @@ class Checkinvoice {
       // return response.redirect('back');
       return response.redirect('/#formbody')
     }
-    else{
+    else{ 
       await next()
     }
   }

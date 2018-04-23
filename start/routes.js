@@ -13,6 +13,7 @@ Route.post('/','AwardsIndexController.check')
 //填個人資料，發票符合資格才能到達此頁
 Route.get('/invoiceok','GuestinfoController.invoiceok').middleware(['Checkinvoice'])
 
+Route.post('/invoiceok','GuestinfoController.store').validator('guestinfo')   
 
 //===============使用者驗證相關(給奧黛莉上傳檔案用驗證)=================
 

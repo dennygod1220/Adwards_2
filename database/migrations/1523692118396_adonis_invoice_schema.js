@@ -6,7 +6,7 @@ class AdonisInvoiceSchema extends Schema {
   up () {
     this.create('adonis_invoices', (table) => {
       table.increments()
-      table.string('invoice_num')
+      table.string('invoice_num').notNullable()
       table.string('file_name')
       table.integer('user_id')
       table.timestamps()
