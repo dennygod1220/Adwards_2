@@ -11,7 +11,7 @@ class guestinfo {
       'cell_phone': 'required',
       'birthday': 'required',
       'email': 'required|email',
-      'special_need': 'required',
+
       'guest_invoice': 'required',
       'guest_size': 'required',
     }
