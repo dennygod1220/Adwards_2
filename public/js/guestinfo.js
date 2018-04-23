@@ -1,5 +1,18 @@
 $(function () {
-
+  
+//==================立即預約按鈕==========================
+const wdth=$(window).width();
+if(wdth < 680){
+  $("#gonow").css("display","none")
+}
+$(window).resize(function() {
+  const wdth=$(window).width();
+  if(wdth < 680){
+    $("#gonow").css("display","none")
+  }else if(wdth >680){
+    $("#gonow").css("display","inline")
+  }
+});
   //=====================================將商店的地區名稱資訊儲存於前端js中==============================
   //取得option的方法
   // $("#invisible_storeid").children(i).text()

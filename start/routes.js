@@ -14,6 +14,12 @@ Route.post('/','AwardsIndexController.check')
 Route.get('/invoiceok','GuestinfoController.invoiceok').middleware(['Checkinvoice'])
 
 Route.post('/invoiceok','GuestinfoController.store').validator('guestinfo')   
+//預約試穿
+Route.on('/testdress').render('testdress')
+//內衣密碼
+Route.on('/underwearsecret').render('underwearsecret')
+//門市活動
+Route.on('/storeactive').render('storeactive')
 
 //===============使用者驗證相關(給奧黛莉上傳檔案用驗證)=================
 

@@ -1,16 +1,14 @@
  @layout('layout/normalUser/main')
   @section('content')
 
-<div class="col-sm">
+<div class="row no-gutters">
+<div class="col">
   <img src="./img/index.png" class="img-fluid" alt="">
+  <a href="/#formbody">
+    <img id="gonow" src="./img/audrey_iconbutton.png" alt="">
+  </a>
 </div>
-<a href="/#formbody">
-  <div id="reservationBtn2">
-    <div id="reservationBtn" style="background-color:#41a8e2;">
-      <p id="reservationnowP"> 立即預約</p>
-    </div>
-  </div>
-</a>
+</div>
 <div class="row" style="height:50px">
 </div>
 
@@ -118,7 +116,22 @@
               </select>
               <input id="inputTime" type="text" name="time" class="form-control Invisible" aria-describedby="timeHelp" readonly="readonly">
             </div>
+
+          <div class="form-group" id="size">
+            <label for="guest_size">
+              <span class="isneedicon">*</span>您的尺寸:</label>
+            <select id="selectsize" class="form-control"  readonly="readonly">
+              <option v-for="sizes in size">
+                [[sizes]]
+              </option>
+            </select>
+            <input id="input_size" type="text" name="guest_size" class="form-control Invisible">
+          </div>
+
             </div>
+
+
+
             </div>
           </div>
           <div class="col-sm-4">

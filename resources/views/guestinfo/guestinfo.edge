@@ -1,16 +1,14 @@
  @layout('layout/normalUser/main')
   @section('content')
-
-<div class="col-sm">
+<div class="row no-gutters">
+<div class="col">
   <img src="./img/index.png" class="img-fluid" alt="">
+  <a href="/#formbody">
+    <img id="gonow" src="./img/audrey_iconbutton.png" alt="">
+  </a>
 </div>
-<a href="/#formbody">
-  <div id="reservationBtn2">
-    <div id="reservationBtn" style="background-color:#41a8e2;">
-      <p id="reservationnowP"> 立即預約</p>
-    </div>
-  </div>
-</a>
+</div>
+
 <div class="row" style="height:50px" id="magicalDIV">
 </div>
 
@@ -117,7 +115,7 @@
                 <span class="isneedicon">*</span>您選擇的日期:</label>
               <div>{{-- 透過月曆元件產生，js在layout/normalUser/forguestinfo中 --}}</div>
               <div class="input-group datepicker date" id='date1'>
-                <input name="date" type="hidden" class="form-control">
+                <input id="inpdate" name="date" type="hidden" class="form-control">
               </div>
             </div>
 
@@ -266,12 +264,22 @@
   @endeach
 </select>
 
+<select id="invisible_store_status_date" class="Invisible">
+  @each(item in store_status)
+  <option value="{{item.store_id}}">{{item.date}}</option>
+  @endeach
+</select>
 
-
+<select id="invisible_store_status_time" class="Invisible">
+  @each(item in store_status)
+  <option value="{{item.store_id}}">{{item.time}}</option>
+  @endeach
+</select>
 
 {{ script('https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js')}}
 {{ script('https://cdn.jsdelivr.net/npm/vue/dist/vue.js')}}
 {{ script('./js/guestinfo.js') }}
+{{ script('./js/onlyguestinfo.js') }}
 
 
 
