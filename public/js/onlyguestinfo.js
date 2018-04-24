@@ -23,7 +23,7 @@ $(function(){
 //   }
 
 //==================================
-const store_status_arr = [];
+const store_status_arr = [];//store_status_arr 儲存了所有在guestinfo DB內的店櫃id、預約時段、預約日期
 const store_len = $("#invisible_store_status_date").children().length;
 for (var i = 0; i < store_len; i++) {
         let reg = {
@@ -46,17 +46,52 @@ $("#select_time").change(function () {
  mapping(gueststoreid,guestdate,guesttime);
 })
 
+//mapping 用來判斷同時段、日期、店櫃是否超過兩次
 function mapping(gueststoreid,guestdate,guesttime){
-    console.log(store_status_arr[0].id,store_status_arr[0].date,store_status_arr[0].time);
-    console.log(gueststoreid,guestdate,guesttime)
+    // console.log(store_status_arr[0].id,store_status_arr[0].date,store_status_arr[0].time);
+    // console.log(gueststoreid,guestdate,guesttime)
+    var key2 = 0;
     for(var i = 0; i < store_len; i++){
         if(store_status_arr[i].id == gueststoreid &&store_status_arr[i].date == guestdate&&store_status_arr[i].time == guesttime ){
-            alert("此時段已有人預約，請重新選擇，謝謝")
-            $("#inputTime").val("");
-            $("#select_time").val("請挑選時段");
+            key2++;
         }
     }
+    if (key2 >= 2) {
+      alert("此時段預約已滿，請重新選擇，謝謝")
+      $("#inputTime").val("");
+      $("#select_time").val("請挑選時段");
+    }
+
 }
 
+//判斷某店櫃是否已經超過100組客人預約了，使用者選擇店櫃2時觸發
+    $("#store_id").change(function () {
+    var this_guest_stid = $("#store_id").val();
+    var now_stid_count = 0;
+    for (var i = 0; i < store_len; i++) {
+        if (store_status_arr[i].id == this_guest_stid) {
+        now_stid_count++;
+        }
+    }
+    //判斷是否超過的地方
+    if (now_stid_count >= 100) {
+        alert("此店櫃所有的預約都已經滿了歐，請換店櫃，或是下次請早");
+        $("#real_store_id").val("");
+        $("#store_id").val("");
+    }
+
+    })
+
+//======================按下送出按鈕時跳出確認提醒
+    $("#submitbtn").click(function(){
+        console.log("con");
+        
+        if(confirm("『提醒您，一旦確認預約後，時間地點將無法更改。』")){
+          document.forms[1].submit();
+        }
+        else{
+          return false;
+        }
+    })
 
 })

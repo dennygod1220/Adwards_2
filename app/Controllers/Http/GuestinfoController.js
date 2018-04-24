@@ -13,7 +13,7 @@ class GuestinfoController {
     //一進來就把session清掉
     // session.clear();
 
-
+ 
     const storeinfo_1 =await storemodel.all()
     const storeinfo = storeinfo_1.toJSON()
     //取得store info 資料
@@ -36,7 +36,7 @@ class GuestinfoController {
   }
 
 
-  async store( { request,response,session } ){
+  async store( { request,response,session,view } ){
     
     const guest_data = request.only(['store_id','date','time','guest_name','cell_phone','birthday','email','special_need','guest_invoice','guest_size'])
     console.log(guest_data)
@@ -47,7 +47,7 @@ class GuestinfoController {
 
     await gestmodel.create(guest_data)
     session.clear();
-    return "預約成功"
+    return view.render('guestinfo.sucess')
   }
 }
 

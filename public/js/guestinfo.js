@@ -40,8 +40,10 @@ $(window).resize(function() {
   $("#store_area").change(function () {
     let guest_select = $("#store_area").val();
     $("#store_id option").remove();
+    $("#store_id").append($("<option></option>").attr("value", "").text("請選擇店櫃"));
     for(let i=0;i<store_len;i++){
       if(guest_select == store_area[i].area){
+       
         $("#store_id").append($("<option></option>").attr("value", i+1).text(store_name[i].name));
       }
     }
@@ -117,7 +119,7 @@ $(window).resize(function() {
 
 //==========================尺寸大小======================
 const size = {
-  size: ['C70', 'C75', 'C80', 'D70', 'D75', 'D80', 'E70', 'E75', '其他尺寸'],
+  size_in: ['C70', 'C75', 'C80', 'D70', 'D75', 'D80', 'E70', 'E75','c70', 'c75', 'c80', 'd70', 'd75', 'd80', 'e70', 'e75'],
   selectsize:""
 }
 const size_select = new Vue({
@@ -125,18 +127,36 @@ const size_select = new Vue({
   delimiters: ['[[', ']]'],
   el: '#size',
   data: size,
+  methods:{
+    checksize:function(event){
+      var count = 0;
+      for(let i = 0 ; i < this.size_in.length ; i++){
+        if(event.target.value == this.size_in[i]){
+          count++;
+        }
+      }
+      if(count == 0){
+        alert("『提醒您：本次體驗試穿之新品罩杯尺寸為 CD70-80;E70-75，如無法成功完成體驗試穿並填寫問券,恕無法享有免費送內衣!』");
+        window.location.replace("/");
+      }
+      else{
+        return this.selectsize = event.target.value;
+      }
+    }
+  }
 })
 
-$("#input_size").val($("#selectsize").val())
-$("#selectsize").change(function () {
-  if($("#selectsize").val() == "其他尺寸"){
-    $("#input_size").val("");
+
+// $("#input_size").val($("#selectsize").val())
+// $("#selectsize").change(function () {
+//   if($("#selectsize").val() == "其他尺寸"){
+//     $("#input_size").val("");
    
-    alert("很抱歉，此次體驗活動無您的尺寸");
-    $('#selectsize').val("C70");
-  }
-  $("#input_size").val($("#selectsize").val());
-})
+//     alert("很抱歉，此次體驗活動無您的尺寸");
+//     $('#selectsize').val("C70");
+//   }
+//   $("#input_size").val($("#selectsize").val());
+// })
 
 
 })

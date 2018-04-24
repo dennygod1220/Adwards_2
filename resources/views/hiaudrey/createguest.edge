@@ -1,86 +1,10 @@
- @layout('layout/normalUser/main')
-  @section('content')
-<div class="row no-gutters">
-<div class="col">
-  <img src="./img/index.png" class="img" alt="" style="width:100%">
-  <a href="/#formbody">
-    <img id="gonow" src="./img/audrey_iconbutton.png" alt="">
-  </a>
-</div>
-</div>
+@layout('layout/auth/main')
+ @section('content')
 
-<div class="row" style="height:50px" id="magicalDIV">
-</div>
+<div class="card">
+  <div class="card-body" id="formbody">
 
-{{--  ====================================================================================  --}}
-
-
-
- 
-<style>
-    {{--  隱藏的form input  --}}
-    .Invisible {
-      display: none;
-    }
-    {{--  紅色的星號  --}}
-    .isneedicon{
-        color:red;
-    }
-</style>
-
-
-
-
-    @if(old('NoWinMessage'))
-    <div class="alert alert-danger">
-      {{ old('NoWinMessage') }}
-    </div>
-    @endif
-
-<form action="" method="POST">
-<fieldset disabled>
-  {{ csrfField() }}
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-2"></div>
-    <div class="col-sm-8">
-      <div class="card" id="formbody2">
-        <div class="card-body" id="formbody">
-          <div class="form-group">
-            <label>您的發票號碼:</label>
-            <input type="text" name="invoice_num" class="form-control" placeholder="發票號碼" value="{{invoicenum}}" readonly="readonly">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-2"></div>
-</div>
-
-
-
-
-
-
-  <div style="height:40px;"></div>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-5"></div>
-      <div class="col-sm-2" style="text-align:center;">
-        <a href="/invoiceok#magicalDIV" class="btn btn-info" readonly="readonly">送出發票</a>
-      </div>
-      <div class="col-sm-5"></div>
-    </div>
-  </div>
-</fieldset>
-</form>
-
-
-<div style="height:40px;"></div>
-
-
-    {{-- ========================================= --}}
-<form action="{{ route('GuestinfoController.store')}}" method="POST" id="guestinfoform">
+<form action="{{ route('CreateguestinfoController.store')}}" method="POST">
   {{ csrfField() }}
 
       <div class="container-fluid">
@@ -143,11 +67,17 @@
             <div class="form-group" id="size">
               <label for="guest_size">
                 <span class="isneedicon">*</span>您的尺寸:</label>
-              {{--  <select id="selectsize" class="form-control"><option v-for="sizes in size">[[sizes]]</option></select>  --}}
-              <input id="fake_size" type="text" class="form-control"  v-on:change="checksize">
-              <input id="input_size" type="text" name="guest_size" class="form-control Invisible" v-model="selectsize" >
+              <select id="selectsize" class="form-control">
+                <option v-for="sizes in size">
+                  [[sizes]]
+                </option>
+              </select>
+              <input id="input_size" type="text" name="guest_size" class="form-control Invisible">
             </div>
-
+            <div class="form-group">
+            <label>發票號碼:</label>
+            <input type="text" name="guest_invoice" class="form-control">
+            </div>
             </div>
             </div>
           </div>
@@ -233,7 +163,7 @@
               <textarea name="special_need" cols="30" rows="8" class="form-control" >
               </textarea>
             </div>
-            <input type="text" name="guest_invoice" class="Invisible" value="{{invoicenum}}">
+
           </div>
         </div>
       </div>
@@ -244,7 +174,7 @@
     <div class="row">
       <div class="col-sm-5"></div>
       <div class="col-sm-2">
-        <button id="submitbtn" class="btn form-control btn-info">確認預約</button>
+        <button type="submit" class="btn form-control btn-info">確認預約</button>
       </div>
       <div class="col-sm-5"></div>
     </div>
@@ -281,6 +211,19 @@
 {{ script('./js/onlyguestinfo.js') }}
 
 
+{{--  月曆元件  --}}
+<script type="text/javascript">
+  $(function () {
+    $('#date1').datetimepicker({
+      format: 'YYYY-MM-DD',
+      locale: moment.locale('zh-cn'),
+        inline: true,
+        sideBySide: true,
+        keepOpen: true,
 
+    });
+    $('#date1').datetimepicker('show');
+
+  });
+</script>
 @endsection
-

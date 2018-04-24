@@ -14,6 +14,7 @@ Route.post('/','AwardsIndexController.check')
 Route.get('/invoiceok','GuestinfoController.invoiceok').middleware(['Checkinvoice'])
 
 Route.post('/invoiceok','GuestinfoController.store').validator('guestinfo')   
+
 //預約試穿
 Route.on('/testdress').render('testdress')
 //內衣密碼
@@ -21,6 +22,8 @@ Route.on('/underwearsecret').render('underwearsecret')
 //門市活動
 Route.on('/storeactive').render('storeactive')
 
+
+//===============================================後台====================================
 //===============使用者驗證相關(給奧黛莉上傳檔案用驗證)=================
 
 Route.group(()=>{
@@ -40,8 +43,14 @@ Route.group(()=>{
     Route.post('/signin','UserController.signIn').validator('SignIn')
 }).prefix('/auth')
 
+//後台首頁
+Route.get('/HiAudrey','HiAudreyController.index').middleware('auth')
+//刪除客戶資料
+Route.get('/HiAudrey/delete/:id', 'HiAudreyController.delete').middleware('auth')
+//手動新增客戶資料
+Route.get('/createguest','CreateguestinfoController.index').middleware('auth')
 
-
+Route.post('/createguest','CreateguestinfoController.store')
 //奧黛莉他們上傳用的路徑
 Route.get('/uploadfile','UploadFileController.index').middleware('auth')
 

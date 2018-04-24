@@ -64,13 +64,16 @@
 {{--  月曆元件  --}}
 <script type="text/javascript">
   $(function () {
+    var minDate = new Date();
+    //限制只能選擇3天候
+    minDate3 = minDate.getFullYear()+"-"+(minDate.getMonth()+1)+"-"+(minDate.getDate()+3)
     $('#date1').datetimepicker({
       format: 'YYYY-MM-DD',
       locale: moment.locale('zh-cn'),
         inline: true,
         sideBySide: true,
         keepOpen: true,
-        minDate: new Date(),
+        minDate: minDate3,        
     });
     $('#date1').datetimepicker('show');
 
