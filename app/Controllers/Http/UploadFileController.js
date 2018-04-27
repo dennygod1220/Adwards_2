@@ -1,7 +1,9 @@
 'use strict'
-
+ 
 //讀取操作excel的庫
 var xlsx = require('node-xlsx');
+var fs = require('fs');
+var XlsxPopulate = use('xlsx-populate')
 //日期時間的
 var dateFormat = require('dateformat');
 var now = new Date();
@@ -65,9 +67,6 @@ class UploadFileController {
     })
   }
 
-  async test() {
-
-  }
 }
 
 module.exports = UploadFileController

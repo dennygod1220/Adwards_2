@@ -29,7 +29,8 @@ class CreateguestinfoController {
         return view.render('hiaudrey.createguest', {
           restructur_storeinfo:restructur_storeinfo,
           store_area_distinct:store_area_distinct,
-          store_status:store_status
+          store_status:store_status,
+          SessionUser:session.get('username')+"你好"
         })
       }
 

@@ -18,9 +18,7 @@ class UserController {
     async signIn( { request ,response , auth, session } ){
         //取得sign-in.edge 畫面中，使用者輸入的email 和 password
         const {email,password} = request.all();
-        console.log(session.get("csrf-secret"));
-        
-        
+                
         try{
             // auth.attempt (uid,password) 方法能夠用來進行登錄，如果找不到email或是密碼不對會引發錯誤
             await auth.attempt(email,password);

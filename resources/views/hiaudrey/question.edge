@@ -1,0 +1,417 @@
+
+@layout('layout/auth/main')
+ @section('content')
+
+
+{{--  -------------------------------------------------------------------------------------------------------------------------------------  --}}
+<div class="row" style="height:50px" id="magicalDIV">
+</div>
+
+{{--  ====================================================================================  --}}
+
+
+
+ 
+<style>
+    {{--  隱藏的form input  --}}
+    .Invisible {
+      display: none;
+    }
+    {{--  紅色的星號  --}}
+    .isneedicon{
+        color:red;
+    }
+</style>
+
+<div style="height:40px;"></div>
+
+<div class="container-fluid">
+
+    {{-- ========================================= --}}
+<form action="{{ route('QuestionController.store')}}" method="POST" id="quest_form" class="form-inline">
+  {{ csrfField() }}
+
+<div class="card">
+  <div class="card-body">
+
+    <div class="row">
+      <div class="col-sm-1"></div>
+
+      <div class="col-sm-2">
+        <div class="form-group row">
+        <label for="staticEmail" class="col-form-label">櫃號:</label>
+        <div class="col">
+            <input type="text" name="qu_store_num" class="form-control">
+        </div>
+        </div>
+      </div>
+
+      <div class="col-sm-2">
+        <div class="form-group row">
+        <label for="staticEmail" class="col-form-label">櫃名:</label>
+        <div class="col">
+            <input type="text" name="qu_store_name" class="form-control">
+        </div>
+        </div>
+      </div>
+
+      <div class="col-sm-2">
+        <div class="form-group row">
+        <label for="staticEmail" class="col-form-label">試穿日期:</label>
+        <div class="col">
+            <input type="date" name="qu_test_date" class="form-control" aria-describedby="emailHelp">
+        </div>
+        </div>
+      </div>
+
+      <div class="col-sm-2">
+        <div class="form-group row">
+        <label for="staticEmail" class="col-form-label">試穿尺寸:</label>
+        <div class="col">
+            <input type="text" name="qu_test_size" class="form-control">
+        </div>
+        </div>
+      </div>
+
+      <div class="col-sm-2">
+        <div class="form-group row">
+        <label for="staticEmail" class="col-form-label">尺碼:</label>
+        <div class="col">
+            <input type="text" name="qu_size" class="form-control">
+        </div>
+        </div>
+      </div>
+
+      <div class="col-sm-1"></div>
+    </div>
+<hr>
+    <div style="height:10px;"></div>
+
+    <div class="row">
+      <div class="col">
+        <strong> 一. 測量&了解妳的身型密碼</strong>
+      </div>
+    </div>
+    {{--  上胸圍行 qu_1_1  --}}
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">上胸圍:</span>
+          </div>
+          <input name="qu_1_1_1" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">下胸圍:</span>
+          </div>
+          <input name="qu_1_1_2" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">罩杯:</span>
+          </div>
+          <input name="qu_1_1_3" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+        </div>
+      </div>
+    </div>
+
+{{--  腰圍行 qu_1_2  --}}
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">腰圍:</span>
+            </div>
+            <input name="qu_1_2_1" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">臀圍:</span>
+            </div>
+            <input name="qu_1_2_2" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">建議穿著內衣尺寸:</span>
+            </div>
+            <input name="qu_1_2_3" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            </div>
+        </div>
+    </div>
+
+
+{{--  AB身型密碼行 qu_1_3 --}}
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">A=上胸圍/腰圍:</span>
+            </div>
+            <input name="qu_1_3_1" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">B=臀圍/腰圍:</span>
+            </div>
+            <input name="qu_1_3_2" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">身型密碼:</span>
+            </div>
+            <input name="qu_1_3_3" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            </div>
+        </div>
+    </div>
+
+
+<hr>
+    <div style="height:10px;"></div>
+
+    <div class="row">
+      <div class="col">
+        <strong>二、魔塑W弦 新款體驗試穿感受</strong>
+      </div>
+    </div>
+
+
+<div class="row">
+  <table class="table table-bordered table-hover" id="qu_2_table">
+    {{--  qu_2_1  --}}
+    <tr>
+      <td>1. 您曾經穿過Audrey魔塑W弦內衣嗎?</td>
+      <td>
+        <div class="form-group">
+          <label>是</label>
+          <input type="radio" name="qu_2_1" class="form-control" value="是">
+          <label>否</label>
+          <input type="radio" name="qu_2_1" class="form-control" value="否">
+        </div>
+      </td>
+    </tr>
+{{--  qu_2_2  --}}
+    <tr>
+      <td>2. 您知道Audrey魔塑W弦內衣是台灣奧黛莉公司所擁有多國專利的商品嗎?</td>
+      <td>
+        <div class="form-group">
+          <label>是</label>
+          <input type="radio" name="qu_2_2" class="form-control" value="是 ">
+          <label>否</label>
+          <input type="radio" name="qu_2_2" class="form-control" value="否">
+        </div>
+      </td>
+    </tr>
+{{--  qu_2_3  --}}
+    <tr>
+      <td>3. 選購內衣時，吸引您的功能特點是什麼?(可複選)</td>
+      <td>
+        <div class="form-group">
+          <label>側包</label>
+          <input type="checkbox" class="form-control" v-model="qu_2_3" value="側包">
+          <label>集中</label>
+          <input type="checkbox" class="form-control" v-model="qu_2_3" value="集中">
+          <label>舒適</label>
+          <input type="checkbox" class="form-control" v-model="qu_2_3" value="舒適">
+          <label>透氣</label>
+          <input type="checkbox" class="form-control" v-model="qu_2_3" value="透氣">
+          <label>豐挺</label>
+          <input type="checkbox" class="form-control" v-model="qu_2_3" value="豐挺">
+        </div>
+        <input type="text" name="qu_2_3" id="qu_2_3" v-model="qu_2_3" class="Invisible">
+      </td>
+    </tr>
+{{--  qu_2_4  --}}
+    <tr>
+      <td>4. 您認為Audrey魔塑W弦內衣穿起來最令您滿意的地方? (可複選)</td>
+      <td>
+        <div class="form-group">
+          <label>舒適</label>
+          <input type="checkbox" class="form-control" v-model="qu_2_4" value="舒適">
+          <label>側包</label>
+          <input type="checkbox" class="form-control" v-model="qu_2_4" value="側包">
+          <label>集中</label>
+          <input type="checkbox" class="form-control" v-model="qu_2_4" value="集中">
+          <label>穩定</label>
+          <input type="checkbox" class="form-control" v-model="qu_2_4" value="穩定">
+          <label>紓壓鋼圈剪裁</label>
+          <input type="checkbox" class="form-control" v-model="qu_2_4" value="紓壓鋼圈剪裁">
+          <label>軟鋼圈穿著不壓迫</label>
+          <input type="checkbox" class="form-control" v-model="qu_2_4" value="軟鋼圈穿著不壓迫">
+          <label>胸部看起來更豐滿</label>
+          <input type="checkbox" class="form-control" v-model="qu_2_4" value="胸部看起來更豐滿">
+          <label>無背肉擠壓</label>
+          <input type="checkbox" class="form-control" v-model="qu_2_4" value="無背肉擠壓">
+          <label>性感身形</label>
+          <input type="checkbox" class="form-control" v-model="qu_2_4" value="性感身形">
+        </div>
+        <input type="text" name="qu_2_4" id="qu_2_4" v-model="qu_2_4" class="Invisible">
+      </td>
+    </tr>
+
+{{--  qu_2_5  --}}
+    <tr>
+      <td>5. 未來Audrey魔塑W弦內衣推出新款時, 您會喜歡什麼花色?</td>
+      <td>
+        <div class="form-group">
+          <label>紅</label>
+          <input type="radio" name="qu_2_5" class="form-control" value="紅">
+          <label>橙</label>
+          <input type="radio" name="qu_2_5" class="form-control" value="橙">
+          <label>黃</label>
+          <input type="radio" name="qu_2_5" class="form-control" value="黃">
+          <label>綠</label>
+          <input type="radio" name="qu_2_5" class="form-control" value="綠">
+          <label>藍</label>
+          <input type="radio" name="qu_2_5" class="form-control" value="藍">
+          <label>靛</label>
+          <input type="radio" name="qu_2_5" class="form-control" value="靛">
+          <label>紫</label>
+          <input type="radio" name="qu_2_5" class="form-control" value="紫">
+          <label>黑</label>
+          <input type="radio" name="qu_2_5" class="form-control" value="黑">
+          <label>白</label>
+          <input type="radio" name="qu_2_5" class="form-control" value="白">
+          <label>灰</label>
+          <input type="radio" name="qu_2_5" class="form-control" value="灰">
+        </div>
+      </td>
+    </tr>
+{{--  qu_2_6  --}}
+    <tr>
+      <td>6. 您重視的內衣材質?(可複選)</td>
+      <td>
+        <div class="form-group">
+          <label>手感細緻蕾絲</label>
+          <input type="checkbox" class="form-control" v-model="qu_2_6" value="手感細緻蕾絲">
+          <label>柔軟素面布</label>
+          <input type="checkbox" class="form-control" v-model="qu_2_6" value="柔軟素面布">
+          <label>背片有塑身力</label>
+          <input type="checkbox" class="form-control" v-model="qu_2_6" value="背片有塑身力">
+          <label>透氣輕薄</label>
+          <input type="checkbox" class="form-control" v-model="qu_2_6" value="透氣輕薄">
+          <label>其他</label>
+          <input type="checkbox" class="form-control" v-model="qu_2_6" value="其他">
+        </div>
+        <input type="text" name="qu_2_6" id="qu_2_6" v-model="qu_2_6" class="Invisible">
+      </td>
+    </tr>
+{{--  qu_2_7  --}}
+
+<tr>
+  <td>7. 您喜歡Audrey魔塑W弦內衣罩杯前中心鏤空的穿著效果嗎?</td>
+  <td>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label>是</label>
+            <input type="radio" name="qu_2_7_YN" class="form-control" v-on:change="qu_2_7_YN" value="是">
+            <label>否(請接續填寫)</label>
+            <input type="radio" name="qu_2_7_YN" class="form-control" v-on:change="qu_2_7_YN" value="否">
+          </div>
+        </div>
+      </div>
+      <div class="row" id="ifisfalse" style="display:none">
+        <div class="col">
+          <div class="form-group">
+            <label>原因:</label>
+            <label>看起來沒有溝</label>
+            <input type="checkbox" class="form-control" v-model="qu_2_7_2" value="看起來沒有溝">
+            <label>沒有安全感</label>
+            <input type="checkbox" class="form-control" v-model="qu_2_7_2" value="沒有安全感">
+            <label>不習慣</label>
+            <input type="checkbox" class="form-control" v-model="qu_2_7_2" value="不習慣">
+            <label>胸部就快要露點</label>
+            <input type="checkbox" class="form-control" v-model="qu_2_7_2" value="胸部就快要露點">
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <input type="text" name="qu_2_7" id="qu_2_7" v-model="qu_2_7" class="Invisible">
+    <input type="text" name="qu_2_7_2" id="qu_2_7_2" v-model="qu_2_7_2" class="Invisible">
+  </td>
+</tr>
+
+
+{{--  qu_2_8  --}}
+
+    <tr>
+      <td>8. 您會推薦誰體驗or購買Audrey魔塑W弦內衣?</td>
+      <td>
+        <div class="form-group">
+          <label>姊妹</label>
+          <input type="checkbox"  class="form-control" v-model="qu_2_8" value="姊妹">
+          <label>好友</label>
+          <input type="checkbox"  class="form-control" v-model="qu_2_8" value="好友">
+          <label>女兒</label>
+          <input type="checkbox"  class="form-control" v-model="qu_2_8" value="女兒">
+        </div>
+        <input type="text" name="qu_2_8" id="qu_2_8" v-model="qu_2_8" class="Invisible">
+      </td>
+    </tr>
+  </table>
+
+</div>
+
+
+{{--  兌換貨號...  --}}
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">兌換貨號:</span>
+            </div>
+            <input name="qu_award_num" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">服務員簽名:</span>
+            </div>
+            <input name="qu_service_name" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">兌換者簽名:</span>
+            </div>
+            <input name="qu_award_name" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+            </div>
+        </div>
+    </div>
+<div style="height:30px"></div>
+<p>備註說明：</p>
+<p>贈送款式純屬無償提供體驗試穿，決定款式後就不可退換貨，商品吊牌必需收回，並於尺寸標剪角作為贈送識別。</p>
+<p>贈送款內衣吊牌回收張貼處：</p>
+
+<div class="row">
+    <input type="submit" value="送出問卷" class="btn btn-outline-info">
+</div>
+
+  </div>
+</div>
+</form>
+
+</div>
+{{ script('https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js')}}
+{{ script('https://cdn.jsdelivr.net/npm/vue/dist/vue.js')}}
+{{ script('./js/question.js') }}
+@endsection
+

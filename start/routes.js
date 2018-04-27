@@ -13,7 +13,9 @@ Route.post('/','AwardsIndexController.check')
 //填個人資料，發票符合資格才能到達此頁
 Route.get('/invoiceok','GuestinfoController.invoiceok').middleware(['Checkinvoice'])
 
-Route.post('/invoiceok','GuestinfoController.store').validator('guestinfo')   
+Route.post('/invoiceok','GuestinfoController.store').validator('guestinfo') 
+// Route.post('/invoiceok','GuestinfoController.store') 
+  
 
 //預約試穿
 Route.on('/testdress').render('testdress')
@@ -50,12 +52,32 @@ Route.get('/HiAudrey/delete/:id', 'HiAudreyController.delete').middleware('auth'
 //手動新增客戶資料
 Route.get('/createguest','CreateguestinfoController.index').middleware('auth')
 
-Route.post('/createguest','CreateguestinfoController.store')
+Route.post('/createguest','CreateguestinfoController.store').middleware('auth')
 //奧黛莉他們上傳用的路徑
 Route.get('/uploadfile','UploadFileController.index').middleware('auth')
 
 Route.post('upload', 'UploadFileController.store')
 
+//問卷調查
+Route.get('/question','QuestionController.index').middleware('auth')
+Route.get('/writequestion','QuestionController.writequestion')
+//新增問卷
+Route.post('writequestion', 'QuestionController.store').middleware('auth')
+//刪除問卷
+Route.get('/question/delete/:id', 'QuestionController.delete').middleware('auth')
 
 //錯誤頁面
 Route.on('/errorpage').render('error.404')
+
+
+//下載測試
+Route.get('/downloadQu','QuestionController.downloadguestinfo')
+
+// Route.get('/report', async({request, response, next})=> {
+
+// //    response.download('./public/download/book.xlsx','Hello');
+//    response.attachment('./public/download/book.xlsx','Hello.xlsx');
+
+// });
+
+   

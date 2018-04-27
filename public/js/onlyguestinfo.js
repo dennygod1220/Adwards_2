@@ -56,7 +56,7 @@ function mapping(gueststoreid,guestdate,guesttime){
             key2++;
         }
     }
-    if (key2 >= 2) {
+    if (key2 >= 1) {
       alert("此時段預約已滿，請重新選擇，謝謝")
       $("#inputTime").val("");
       $("#select_time").val("請挑選時段");
